@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+</head>
+<body>
+    <h1>Teste de Conexão com API</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function testAPI() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>Testando conexão...</p>';
+            
+            try {
+                // Test 1: Health Check
+                console.log('Testando health check...');
+                const healthResponse = await fetch('http://localhost:3001/health');
+                const healthData = await healthResponse.json();
+                console.log('Health OK:', healthData);
+                results.innerHTML += '<p>✅ Health Check: OK</p>';
+                
+                // Test 2: Organizations
+                console.log('Testando organizations...');
+                const orgResponse = await fetch('http://localhost:3001/api/organizations');
+                const orgData = await orgResponse.json();
+                console.log('Organizations OK:', orgData);
+                results.innerHTML += '<p>✅ Organizations: ' + orgData.organizations.length + ' encontradas</p>';
+                
+                // Test 3: Asset Types
+                console.log('Testando asset types...');
+                const assetResponse = await fetch('http://localhost:3001/api/assets/types/list');
+                const assetData = await assetResponse.json();
+                console.log('Asset Types OK:', assetData);
+                results.innerHTML += '<p>✅ Asset Types: ' + assetData.length + ' encontrados</p>';
+                
+                results.innerHTML += '<h2>✅ Todos os testes passaram!</h2>';
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                results.innerHTML += '<p>❌ Erro: ' + error.message + '</p>';
+                results.innerHTML += '<p>Stack: ' + error.stack + '</p>';
+            }
+        }
+        
+        // Run test when page loads
+        window.addEventListener('load', testAPI);
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Cloud Analytics - Plataforma de Análise de Energia e Carbono</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <span class="navbar-brand">
+                <i class="fas fa-leaf me-2"></i>
+                Green Cloud Analytics
+            </span>
+            <span class="navbar-text">
+                Plataforma de Análise de Eficiência Energética
+            </span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-server me-2"></i>Cadastro de Ativos do Datacenter</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="assetForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Organização</label>
+                                        <select class="form-select" id="organizationSelect" required>
+                                            <option value="">Selecione...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Datacenter</label>
+                                        <select class="form-select" id="datacenterSelect" required>
+                                            <option value="">Selecione uma organização primeiro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nome do Ativo</label>
+                                        <input type="text" class="form-control" id="assetName" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Tipo de Ativo</label>
+                                        <select class="form-select" id="assetType" required>
+                                            <option value="">Selecione...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-select" id="assetStatus" required>
+                                            <option value="active">Ativo</option>
+                                            <option value="inactive">Inativo</option>
+                                            <option value="maintenance">Manutenção</option>
+                                            <option value="decommissioned">Descomissionado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Modelo</label>
+                                        <input type="text" class="form-control" id="assetModel">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Fabricante</label>
+                                        <input type="text" class="form-control" id="assetManufacturer">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Número de Série</label>
+                                        <input type="text" class="form-control" id="serialNumber">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Data da Medição</label>
+                                        <input type="date" class="form-control" id="measurementDate" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Consumo de Energia (kWh/mês)</label>
+                                        <input type="number" class="form-control" id="energyConsumption" step="0.01" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">PUE (Power Usage Effectiveness)</label>
+                                        <input type="number" class="form-control" id="pue" step="0.01" min="1" max="3" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Capacidade Utilizada (%)</label>
+                                        <input type="number" class="form-control" id="utilization" min="0" max="100" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Temperatura Operacional (°C)</label>
+                                        <input type="number" class="form-control" id="temperature" step="0.1" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Eficiência Energética (%)</label>
+                                        <input type="number" class="form-control" id="efficiency" min="0" max="100" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Fonte de Energia</label>
+                                        <select class="form-select" id="energySource" required>
+                                            <option value="">Selecione...</option>
+                                            <option value="renewable">Renovável</option>
+                                            <option value="mixed">Mista</option>
+                                            <option value="fossil">Combustível Fóssil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Certificação Verde</label>
+                                        <select class="form-select" id="greenCertification">
+                                            <option value="">Selecione...</option>
+                                            <option value="leed">LEED</option>
+                                            <option value="breeam">BREEAM</option>
+                                            <option value="energy_star">Energy Star</option>
+                                            <option value="iso_50001">ISO 50001</option>
+                                            <option value="none">Nenhuma</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Data de Compra</label>
+                                        <input type="date" class="form-control" id="purchaseDate">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Observações</label>
+                                        <textarea class="form-control" id="notes" rows="2"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Garantia (validade)</label>
+                                        <input type="date" class="form-control" id="warrantyExpiry">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                                    <i class="fas fa-eraser me-1"></i> Limpar
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-plus me-1"></i> Adicionar Ativo
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4" id="assetsList" style="display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4><i class="fas fa-list me-2"></i>Ativos Cadastrados</h4>
+                        <button class="btn btn-primary" onclick="generateAnalysis()">
+                            <i class="fas fa-chart-line me-1"></i> Gerar Análise
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Tipo</th>
+                                        <th>Energia (kWh/mês)</th>
+                                        <th>PUE</th>
+                                        <th>Carbono (kgCO2/mês)</th>
+                                        <th>Eficiência</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="assetsTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4" id="analysisSection" style="display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-chart-bar me-2"></i>Análise de Eficiência Energética e Carbono</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6>Consumo de Energia por Ativo</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="energyChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6>Emissões de Carbono por Ativo</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="carbonChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6>Teia de Aranha - Métricas de Eficiência</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="spiderChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6>Tendência de Eficiência Energética</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="efficiencyChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6>Resumo de Indicadores Chave</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="kpiSummary" class="row">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script-fixed.js"></script>
+</body>
+</html>

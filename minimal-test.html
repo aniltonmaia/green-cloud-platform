@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Mínimo</title>
+</head>
+<body>
+    <h1>Teste Mínimo da API</h1>
+    <div id="status">Carregando...</div>
+    
+    <script>
+        // Teste simples de conexão
+        fetch('http://localhost:3001/health')
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                document.getElementById('status').innerHTML = '✅ Conexão OK: ' + data.status;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('status').innerHTML = '❌ Erro: ' + error.message;
+            });
+    </script>
+</body>
+</html>

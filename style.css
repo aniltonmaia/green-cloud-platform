@@ -1,0 +1,310 @@
+:root {
+    --primary-green: #2ecc71;
+    --dark-green: #27ae60;
+    --light-green: #a8e6cf;
+    --carbon-gray: #34495e;
+    --energy-blue: #3498db;
+    --warning-orange: #f39c12;
+    --danger-red: #e74c3c;
+    --success-green: #2ecc71;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(90deg, var(--primary-green), var(--dark-green)) !important;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    border: none;
+    font-weight: 600;
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25);
+}
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success-green), var(--dark-green));
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, var(--dark-green), #229954);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--energy-blue), #2980b9);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2980b9, #1f618d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--danger-red), #c0392b);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(46, 204, 113, 0.1);
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+}
+
+.kpi-card {
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.kpi-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.kpi-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.kpi-trend {
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.trend-up {
+    color: var(--success-green);
+}
+
+.trend-down {
+    color: var(--danger-red);
+}
+
+.trend-stable {
+    color: var(--warning-orange);
+}
+
+.energy-efficiency-high {
+    color: var(--success-green);
+}
+
+.energy-efficiency-medium {
+    color: var(--warning-orange);
+}
+
+.energy-efficiency-low {
+    color: var(--danger-red);
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.asset-type-server {
+    background-color: #3498db;
+}
+
+.asset-type-storage {
+    background-color: #9b59b6;
+}
+
+.asset-type-network {
+    background-color: #e67e22;
+}
+
+.asset-type-cooling {
+    background-color: #1abc9c;
+}
+
+.asset-type-power {
+    background-color: #f39c12;
+}
+
+.energy-source-renewable {
+    background-color: var(--success-green);
+}
+
+.energy-source-mixed {
+    background-color: var(--warning-orange);
+}
+
+.energy-source-fossil {
+    background-color: var(--danger-red);
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin: 20px 0;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 15px;
+    }
+    
+    .kpi-value {
+        font-size: 1.5rem;
+    }
+    
+    .chart-container {
+        height: 250px;
+    }
+}
+
+.tooltip-custom {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-custom .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--carbon-gray);
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
+}
+
+.tooltip-custom:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.alert-green {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    border-color: var(--success-green);
+    color: #155724;
+}
+
+.alert-orange {
+    background: linear-gradient(135deg, #fff3cd, #ffeeba);
+    border-color: var(--warning-orange);
+    color: #856404;
+}
+
+.alert-red {
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    border-color: var(--danger-red);
+    color: #721c24;
+}
