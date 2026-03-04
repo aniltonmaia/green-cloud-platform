@@ -204,9 +204,14 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h4><i class="fas fa-list me-2"></i>Ativos Cadastrados</h4>
-                        <button class="btn btn-primary" onclick="generateAnalysis()">
-                            <i class="fas fa-chart-line me-1"></i> Gerar Análise
-                        </button>
+                        <div>
+                            <button class="btn btn-primary me-2" onclick="generateAnalysis()">
+                                <i class="fas fa-chart-line me-1"></i> Gerar Análise
+                            </button>
+                            <button class="btn btn-success" onclick="generateGovernanceAnalysis()">
+                                <i class="fas fa-shield-alt me-1"></i> Gerar Análise de Governança
+                            </button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -292,6 +297,142 @@
                                     </div>
                                     <div class="card-body">
                                         <div id="kpiSummary" class="row">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nova Seção: Análise Qualitativa e Governança de TI -->
+        <div class="row mt-4" id="governanceSection" style="display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4><i class="fas fa-shield-alt me-2"></i>Análise Qualitativa e Governança de TI</h4>
+                        <button class="btn btn-success" onclick="generateGovernanceAnalysis()">
+                            <i class="fas fa-tasks me-1"></i> Gerar Análise de Governança
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <!-- KPIs de Governança -->
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-primary text-white">
+                                    <div class="card-body text-center">
+                                        <h3 id="kpiCompliance">0%</h3>
+                                        <p class="mb-0">Conformidade Regulatória</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-success text-white">
+                                    <div class="card-body text-center">
+                                        <h3 id="kpiSustainability">0%</h3>
+                                        <p class="mb-0">Sustentabilidade</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-warning text-white">
+                                    <div class="card-body text-center">
+                                        <h3 id="kpiEfficiency">0%</h3>
+                                        <p class="mb-0">Eficiência Operacional</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-info text-white">
+                                    <div class="card-body text-center">
+                                        <h3 id="kpiInnovation">0%</h3>
+                                        <p class="mb-0">Inovação Tecnológica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gráficos de Governança -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6><i class="fas fa-chart-radar me-2"></i>Matriz de Maturidade em Sustentabilidade</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="sustainabilityMatrix"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6><i class="fas fa-chart-line me-2"></i>Tendência de KPIs de Governança</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="governanceTrend"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Plano de Ação -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5><i class="fas fa-clipboard-list me-2"></i>Plano de Ação - Intervenções Prioritárias</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped" id="actionPlanTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Ação Recomendada</th>
+                                                        <th>Categoria</th>
+                                                        <th>Prioridade</th>
+                                                        <th>Responsável</th>
+                                                        <th>Prazo</th>
+                                                        <th>KPI Impactado</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="actionPlanBody">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Análise Qualitativa por Ativo -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5><i class="fas fa-search me-2"></i>Análise Qualitativa por Ativo</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped" id="qualitativeAnalysisTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Ativo</th>
+                                                        <th>Idade (anos)</th>
+                                                        <th>Conformidade</th>
+                                                        <th>Consumo vs Padrão</th>
+                                                        <th>Risco de Obsolescência</th>
+                                                        <th>Potencial de Otimização</th>
+                                                        <th>Recomendação</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="qualitativeAnalysisBody">
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

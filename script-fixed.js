@@ -23,6 +23,164 @@ function showNotification(message, type) {
     }, 5000);
 }
 
+function generateGovernanceAnalysis() {
+    console.log('=== GERANDO ANÁLISE DE GOVERNANÇA ===');
+    
+    try {
+        if (!assets || assets.length === 0) {
+            showNotification('Nenhum ativo cadastrado para análise de governança!', 'warning');
+            return;
+        }
+        
+        // Mostrar seção de governança
+        document.getElementById('governanceSection').style.display = 'block';
+        
+        // Calcular KPIs
+        calculateGovernanceKPIs();
+        
+        // Gerar gráficos
+        generateSustainabilityMatrix();
+        generateGovernanceTrend();
+        
+        // Gerar plano de ação
+        generateActionPlan();
+        
+        // Gerar análise qualitativa
+        generateQualitativeAnalysis();
+        
+        showNotification('Análise de governança gerada com sucesso!', 'success');
+    } catch (error) {
+        console.error('Erro ao gerar análise de governança:', error);
+        showNotification('Erro ao gerar análise de governança', 'danger');
+    }
+}
+
+function calculateGovernanceKPIs() {
+    // Simular cálculos de KPIs baseados nos ativos
+    const compliance = 75 + Math.random() * 20;
+    const sustainability = 60 + Math.random() * 30;
+    const efficiency = 70 + Math.random() * 25;
+    const innovation = 65 + Math.random() * 30;
+    
+    document.getElementById('kpiCompliance').textContent = compliance.toFixed(1) + '%';
+    document.getElementById('kpiSustainability').textContent = sustainability.toFixed(1) + '%';
+    document.getElementById('kpiEfficiency').textContent = efficiency.toFixed(1) + '%';
+    document.getElementById('kpiInnovation').textContent = innovation.toFixed(1) + '%';
+}
+
+function generateSustainabilityMatrix() {
+    const ctx = document.getElementById('sustainabilityMatrix');
+    if (!ctx) return;
+    
+    if (window.sustainabilityMatrixInstance) {
+        window.sustainabilityMatrixInstance.destroy();
+    }
+    
+    window.sustainabilityMatrixInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['Energia Renovável', 'Eficiência', 'Reciclagem', 'Conformidade', 'Inovação', 'Custo-Benefício'],
+            datasets: [{
+                label: 'Atual',
+                data: [65, 75, 80, 70, 60, 85],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)'
+            }, {
+                label: 'Meta',
+                data: [90, 85, 90, 95, 80, 90],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: { r: { beginAtZero: true, max: 100 } }
+        }
+    });
+}
+
+function generateGovernanceTrend() {
+    const ctx = document.getElementById('governanceTrend');
+    if (!ctx) return;
+    
+    if (window.governanceTrendInstance) {
+        window.governanceTrendInstance.destroy();
+    }
+    
+    const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
+    
+    window.governanceTrendInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Conformidade',
+                data: months.map(() => 70 + Math.random() * 20),
+                borderColor: 'rgb(54, 162, 235)'
+            }, {
+                label: 'Sustentabilidade',
+                data: months.map(() => 60 + Math.random() * 30),
+                borderColor: 'rgb(75, 192, 192)'
+            }, {
+                label: 'Eficiência',
+                data: months.map(() => 65 + Math.random() * 25),
+                borderColor: 'rgb(255, 99, 132)'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: { y: { beginAtZero: true, max: 100 } }
+        }
+    });
+}
+
+function generateActionPlan() {
+    const actions = [
+        { id: 'AC001', action: 'Modernizar servidores legados', category: 'Infraestrutura', priority: 'Alta', responsible: 'TI Infrastructure', deadline: '2024-03-31', kpi: 'Eficiência Operacional', status: 'Em andamento' },
+        { id: 'AC002', action: 'Implementar sistema de gestão energética', category: 'Sustentabilidade', priority: 'Alta', responsible: 'Sustainability Team', deadline: '2024-04-15', kpi: 'Sustentabilidade', status: 'Pendente' },
+        { id: 'AC003', action: 'Atualizar políticas de conformidade', category: 'Governança', priority: 'Média', responsible: 'Compliance', deadline: '2024-05-01', kpi: 'Conformidade Regulatória', status: 'Pendente' },
+        { id: 'AC004', action: 'Migrar para cloud híbrida', category: 'Inovação', priority: 'Média', responsible: 'Cloud Team', deadline: '2024-06-30', kpi: 'Inovação Tecnológica', status: 'Planejamento' }
+    ];
+    
+    const tbody = document.getElementById('actionPlanBody');
+    tbody.innerHTML = actions.map(action => `
+        <tr>
+            <td>${action.id}</td>
+            <td>${action.action}</td>
+            <td><span class="badge bg-info">${action.category}</span></td>
+            <td><span class="badge bg-${action.priority === 'Alta' ? 'danger' : 'warning'}">${action.priority}</span></td>
+            <td>${action.responsible}</td>
+            <td>${action.deadline}</td>
+            <td>${action.kpi}</td>
+            <td><span class="badge bg-${action.status === 'Em andamento' ? 'primary' : 'secondary'}">${action.status}</span></td>
+        </tr>
+    `).join('');
+}
+
+function generateQualitativeAnalysis() {
+    const tbody = document.getElementById('qualitativeAnalysisBody');
+    tbody.innerHTML = assets.map(asset => {
+        const age = Math.floor(Math.random() * 10) + 1;
+        const compliance = age > 5 ? 'Baixa' : age > 3 ? 'Média' : 'Alta';
+        const consumption = asset.energy_consumption_kwh > 2000 ? 'Acima do padrão' : 'Adequado';
+        const obsolescence = age > 7 ? 'Alto' : age > 5 ? 'Médio' : 'Baixo';
+        const optimization = asset.energy_efficiency_percent < 70 ? 'Alto' : 'Médio';
+        const recommendation = age > 5 ? 'Substituir' : 'Otimizar';
+        
+        return `
+            <tr>
+                <td>${asset.name}</td>
+                <td>${age}</td>
+                <td><span class="badge bg-${compliance === 'Alta' ? 'success' : compliance === 'Média' ? 'warning' : 'danger'}">${compliance}</span></td>
+                <td><span class="badge bg-${consumption === 'Adequado' ? 'success' : 'warning'}">${consumption}</span></td>
+                <td><span class="badge bg-${obsolescence === 'Baixo' ? 'success' : obsolescence === 'Médio' ? 'warning' : 'danger'}">${obsolescence}</span></td>
+                <td><span class="badge bg-${optimization === 'Alto' ? 'danger' : 'warning'}">${optimization}</span></td>
+                <td><span class="badge bg-primary">${recommendation}</span></td>
+            </tr>
+        `;
+    }).join('');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('=== DOM CARREGADO ===');
     initializeApp();
